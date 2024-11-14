@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Assessment and Online Training Satisfaction Form</title>
+</head>
+<body>
+
+    <h2>Teacher Assessment and Online Training Satisfaction Form for Live online lectures on paper 401 and paper 401 from India </h2>
+    <form id="assessmentForm" action="https://script.google.com/macros/s/AKfycbz2rwp9fx6hCaFAfUzDwux6WCN3Lguk1Pc6AtXX_xKRMVCUmXXKrbGPd-yCtOOK9bix/exec" method="POST">
+
+        <label for="student_name">Student's Name:</label><br>
+        <input type="text" id="student_name" name="student_name" required><br><br>
+
+        <label for="name">Teacher's Name:</label><br>
+        <select id="name" name="name" required>
+            <option value="Ms Kavita (401)">Ms Kavita (401)</option>
+            <option value="Ms Jolene (405)">Ms Jolene (405)</option>
+        </select><br><br>
+
+        <h3>Teacher Performance</h3>
+
+        <label>1. How clear was the teacher's communication?</label><br>
+        <select name="communication_clarity" required>
+            <option value="1">Very Poor</option>
+            <option value="2">Poor</option>
+            <option value="3">Average</option>
+            <option value="4">Good</option>
+            <option value="5">Excellent</option>
+        </select><br><br>
+
+        <label>2. How effectively did the teacher explain the subject material?</label><br>
+        <select name="subject_explanation" required>
+            <option value="1">Very Ineffective</option>
+            <option value="2">Ineffective</option>
+            <option value="3">Neutral</option>
+            <option value="4">Effective</option>
+            <option value="5">Very Effective</option>
+        </select><br><br>
+
+        <label>3. Was the teacher available to address questions and concerns during the session?</label><br>
+        <select name="availability" required>
+            <option value="1">Not Available</option>
+            <option value="2">Somewhat Available</option>
+            <option value="3">Moderately Available</option>
+            <option value="4">Mostly Available</option>
+            <option value="5">Always Available</option>
+        </select><br><br>
+
+        <h3>Online Training Satisfaction</h3>
+
+        <label>4. How satisfied are you with the quality of the online training platform?</label><br>
+        <select name="platform_quality" required>
+            <option value="1">Very Dissatisfied</option>
+            <option value="2">Dissatisfied</option>
+            <option value="3">Neutral</option>
+            <option value="4">Satisfied</option>
+            <option value="5">Very Satisfied</option>
+        </select><br><br>
+
+        <label>5. How was the ease of access and navigation on the online platform?</label><br>
+        <select name="ease_of_access" required>
+            <option value="1">Very Difficult</option>
+            <option value="2">Difficult</option>
+            <option value="3">Neutral</option>
+            <option value="4">Easy</option>
+            <option value="5">Very Easy</option>
+        </select><br><br>
+
+        <label>6. How would you rate the technical support provided for the online training?</label><br>
+        <select name="technical_support" required>
+            <option value="1">Very Poor</option>
+            <option value="2">Poor</option>
+            <option value="3">Average</option>
+            <option value="4">Good</option>
+            <option value="5">Excellent</option>
+        </select><br><br>
+
+        <label>7. How satisfied are you with the pacing and structure of the online training sessions?</label><br>
+        <select name="pacing_structure" required>
+            <option value="1">Very Dissatisfied</option>
+            <option value="2">Dissatisfied</option>
+            <option value="3">Neutral</option>
+            <option value="4">Satisfied</option>
+            <option value="5">Very Satisfied</option>
+        </select><br><br>
+
+        <label>8. How likely are you to recommend this online training to others?</label><br>
+        <select name="recommendation" required>
+            <option value="1">Very Unlikely</option>
+            <option value="2">Unlikely</option>
+            <option value="3">Neutral</option>
+            <option value="4">Likely</option>
+            <option value="5">Very Likely</option>
+        </select><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <p id="message"></p>
+
+    <script>
+        // Optional script for message display after submission
+        const form = document.getElementById('assessmentForm');
+        const message = document.getElementById('message');
+
+        form.onsubmit = async (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData
+                });
+                if (response.ok) {
+                    message.textContent = 'Form submitted successfully!';
+                    form.reset();
+                } else {
+                    message.textContent = 'Failed to submit the form.';
+                }
+            } catch (error) {
+                message.textContent = 'Error submitting the form.';
+            }
+        };
+    </script>
+
+</body>
+</html>
