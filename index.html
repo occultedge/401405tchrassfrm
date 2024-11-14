@@ -109,7 +109,7 @@
 
         // Construct the URL with form data
         const formData = new URLSearchParams(new FormData(form)).toString();
-        const url = "YOUR_SCRIPT_URL" + "?callback=handleResponse&" + formData;
+        const url = "https://script.google.com/macros/s/AKfycbyD1KPM0mpaHHobNL_gMXyIrqnWHuyvW6Ec6wCF6bhM1pK4hdfH7yqKGfONAj8_ggOt/exec" + "?callback=handleResponse&" + formData;
 
         // Create a script tag for JSONP request
         const script = document.createElement('script');
