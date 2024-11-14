@@ -101,29 +101,32 @@
     <p id="message"></p>
 
     <script>
-        // Optional script for message display after submission
-        const form = document.getElementById('assessmentForm');
-        const message = document.getElementById('message');
+    const form = document.getElementById('assessmentForm');
+    const message = document.getElementById('message');
 
-        form.onsubmit = async (e) => {
-            e.preventDefault();
-            const formData = new FormData(form);
-            try {
-                const response = await fetch(form.action, {
-                    method: 'POST',
-                    body: formData
-                });
-                if (response.ok) {
-                    message.textContent = 'Form submitted successfully!';
-                    form.reset();
-                } else {
-                    message.textContent = 'Failed to submit the form.';
-                }
-            } catch (error) {
-                message.textContent = 'Error submitting the form.';
-            }
-        };
-    </script>
+    form.onsubmit = async (e) => {
+        e.preventDefault();
+
+        // Construct the URL with form data
+        const formData = new URLSearchParams(new FormData(form)).toString();
+        const url = "YOUR_SCRIPT_URL" + "?callback=handleResponse&" + formData;
+
+        // Create a script tag for JSONP request
+        const script = document.createElement('script');
+        script.src = url;
+        document.body.appendChild(script);
+    };
+
+    // Handle the JSONP response
+    function handleResponse(response) {
+        if (response.status === 'success') {
+            message.textContent = 'Form submitted successfully!';
+            form.reset();
+        } else {
+            message.textContent = 'Failed to submit the form.';
+        }
+    }
+</script>
 
 </body>
 </html>
