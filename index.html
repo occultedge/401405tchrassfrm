@@ -1,6 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    /* Progress bar styling */
+.progress-container {
+    display: none; /* Hidden by default */
+    width: 100%;
+    background-color: #f3f3f3;
+    border-radius: 5px;
+    height: 20px;
+    margin-top: 10px;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%; /* Start with empty bar */
+    background-color: #4caf50;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    line-height: 20px; /* Center text vertically */
+    font-size: 12px;
+}
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teacher Assessment and Online Training Satisfaction Form</title>
@@ -96,6 +117,10 @@
         </select><br><br>
 
         <input type="submit" value="Submit">
+        <div class="progress-container" id="progressContainer">
+    <div class="progress-bar" id="progressBar">0%</div>
+</div>
+
     </form>
 
     <p id="message"></p>
@@ -106,6 +131,24 @@
 
     form.onsubmit = async (e) => {
         e.preventDefault();
+        // Show and reset the progress bar
+const progressContainer = document.getElementById('progressContainer');
+const progressBar = document.getElementById('progressBar');
+progressContainer.style.display = 'block'; // Show progress bar
+progressBar.style.width = '0%'; // Reset to empty
+progressBar.textContent = '0%';
+
+// Simulate progress fill-up (for visual effect)
+let progress = 0;
+const progressInterval = setInterval(() => {
+    progress += 10;
+    progressBar.style.width = progress + '%';
+    progressBar.textContent = progress + '%';
+    if (progress >= 100) {
+        clearInterval(progressInterval); // Stop the animation at 100%
+    }
+}, 100); // Adjust speed as needed
+
 
         // Construct the URL with form data
         const formData = new URLSearchParams(new FormData(form)).toString();
@@ -125,6 +168,8 @@
         } else {
             message.textContent = 'Failed to submit the form.';
         }
+        progressContainer.style.display = 'none'; // Hide progress bar after submission
+
     }
 </script>
 
